@@ -1,0 +1,59 @@
+<main>
+  <h1>Template Update</h1>
+
+  <section>
+    <p>
+      <strong>Engagement:</strong>
+      {{ pendingUpdate.engagementName }}
+    </p>
+
+    <p>
+      <strong>Template:</strong>
+      {{ pendingUpdate.templateId }}
+    </p>
+
+    <p>
+      <strong>Current version:</strong>
+      {{ pendingUpdate.currentVersion }}
+    </p>
+
+    <p>
+      <strong>Latest version:</strong>
+      {{ pendingUpdate.latestVersion }}
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      {{ pendingUpdate.status }}
+    </p>
+  </section>
+
+  <section>
+    <h2>Changes</h2>
+
+    @if (pendingUpdate.changes.length > 0) {
+      <ul>
+        @for (change of pendingUpdate.changes; track $index) {
+          <li>
+            <strong>{{ change.type }}:</strong>
+            {{ change.message }}
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>No changes are pending.</p>
+    }
+  </section>
+
+  @if (pendingUpdate.status === 'PENDING') {
+    <section>
+      <button type="button" (click)="applyUpdate()">
+        Apply
+      </button>
+
+      <button type="button" (click)="declineUpdate()">
+        Decline
+      </button>
+    </section>
+  }
+</main>
