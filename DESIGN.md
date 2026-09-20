@@ -2,6 +2,8 @@
 
 ## 1. High-Level Architecture
 
+The architecture separates update detection from presentation and avoids loading the full Engagement File.
+
 ```mermaid
 flowchart TD
     A[Engagement] --> B[PendingUpdateService]
@@ -14,6 +16,8 @@ flowchart TD
     H --> I[Angular Client]
     I --> J[Review Update]
     I --> K[Apply / Decline]
+
+```
 
 The solution separates update detection, diff transformation, and client presentation.
 
